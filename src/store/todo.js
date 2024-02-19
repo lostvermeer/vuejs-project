@@ -39,6 +39,25 @@ export const useStore = defineStore ('todos', () => {
         }
     }
 
+    function sortByDate() {
+        let sortedTodos = [];
+        
+        if( todos.value[0].id < todos.value[1].id){
+            sortedTodos = todos.value.sort(
+                (objA, objB) => objB.id - objA.id,
+            )
+            localStorage.setItem('todos', JSON.stringify(sortedTodos))
+            return sortedTodos;
+        } else {
+            sortedTodos = todos.value.sort(
+                (objA, objB) => objA.id - objB.id,
+            )
+            localStorage.setItem('todos', JSON.stringify(sortedTodos))
+            return sortedTodos;
+        }       
+        
+    }
+
     function deleteTask(taskId) {
         todos.value = todos.value.filter((task) => task.id !== taskId)
         localStorage.setItem('todos', JSON.stringify(todos.value))
@@ -80,5 +99,5 @@ export const useStore = defineStore ('todos', () => {
         }
     ]));
 
-    return { todos, loadTodos, clearAllStorage, createTask, updateTask, deleteTask, getTaskById , getByLable, getByRows}
+    return { todos, loadTodos, clearAllStorage, createTask, updateTask, deleteTask, getTaskById, sortByDate, getByLable, getByRows}
 });

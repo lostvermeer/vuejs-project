@@ -7,6 +7,9 @@
         <div>
             <button type="button" id="addTaskButton" @click="toggleModal">Add Task</button>
         </div>
+        <div>
+            <button type="button" id="sort" @click="sortByDate">Sort by Date</button>
+        </div>
 
 
 
@@ -38,7 +41,7 @@ const taskId = ref(null)
 
 const store = useStore();
 
-const rows = computed(() => store.getByRows) 
+let rows = computed(() => store.getByRows) 
 const lables = computed(() => store.getByLable)
 
 const toggleModal = () => {
@@ -46,6 +49,10 @@ const toggleModal = () => {
     if (!activeModal.value) {
         taskId.value = null;
     }
+}
+
+const sortByDate = () => {
+    rows = store.sortByDate();
 }
 
 const openEditModal = (id) => {
