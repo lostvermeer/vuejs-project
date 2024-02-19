@@ -1,37 +1,26 @@
 <template lang="">
-    <Transition>
-        <div id="baseModal"
-        tabindex="-1"
-        v-if="activeModal"
-        >
-            <div>
-                <h4>Add task</h4>
-                <button type="button" @click="$emit('closeModal')"> Close
-                    <!-- <svg
-                    aria-hidden="true"
-                    class="h-5 w-5"
-                    fill="currentColor"
-                    viewbox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                    >
-                    <path
-                        fill-rule="evenodd"
-                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                        clip-rule="evenodd"
-                    />
-                    </svg>
-                    <span class="sr-only">Close modal</span> -->
-                </button>
-            </div>
+    <Transition name="modal-animation">
+        <div v-show="activeModal" class="modal">
+            <transition name="modal-animation-inner">
+                <div v-show="activeModal" class="modal-inner">
+                <div id="baseModal"
+                tabindex="-1"
+                v-if="activeModal"
+                >
+                  
+                        <h4>Add task</h4>
+                        <div class="butt"><button id="closeButton" type="button" @click="$emit('closeModal')">Close</button></div>
+                   
 
-            <slot />
+                        <slot />
+                </div>
+                </div>
+            </transition>
         </div>
     </Transition>
-    <div
-    v-if="activeModal"
-    modal-backdrop=""
-  ></div>
+    <div v-if="activeModal" modal-backdrop=""></div>
 </template>
+
 <script setup>
 defineEmits(['closeModal'])
 defineProps({
@@ -41,6 +30,57 @@ defineProps({
     }
 })
 </script>
-<style lang="">
-    
+<style lang="scss">
+.modal-animation-enter-active,
+.modal-animation-leave-active {
+  transition: opacity 0.3s cubic-bezier(0.52, 0.02, 0.19, 1.02);
+}
+
+.modal-animation-enter-from,
+.modal-animation-leave-to {
+  opacity: 0;
+}
+
+.modal-animation-inner-enter-active {
+  transition: all 0.3s cubic-bezier(0.52, 0.02, 0.19, 1.02) 0.15s;
+}
+
+.modal-animation-inner-leave-active {
+  transition: all 0.3s cubic-bezier(0.52, 0.02, 0.19, 1.02);
+}
+
+.modal-animation-inner-enter-from {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.modal-animation-inner-leave-to {
+  transform: scale(0.8);
+}
+#closeButton{
+    background-color: rgb(137, 25, 25);
+    margin-left: 220px;
+}
+h4{
+    background-color: #fff;
+}
+.butt{
+    background-color: #fff;
+    margin-bottom: -5px;
+    margin-top: -45px;
+}
+
+
+.modal{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  
+}
 </style>

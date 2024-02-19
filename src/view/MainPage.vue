@@ -1,7 +1,7 @@
 <template>
-    <section>
+    <div class="home">
 
-        <nav>
+        <nav class="header">
             <h2>Todo tasks</h2>
         </nav>
         <div>
@@ -10,7 +10,7 @@
 
 
 
-        <div style="padding-top: 10px;">
+        <div id="divTable" style="padding-top: 10px;">
             <TodoTable
                 :rows="rows"
                 :lables="lables"
@@ -22,7 +22,7 @@
             <Modal @closeModal="toggleModal" v-model:taskId="taskId"/>
         </BaseModal>    
 
-    </section>
+    </div>
 </template>
 
 <script setup>
@@ -62,6 +62,23 @@ onMounted(() => {
 </script>
 
 
-<style scoped>
-    
+<style lang="scss" scoped>
+.home {
+  
+  height: 100vh;
+  
+
+  .header {
+    justify-content: center;
+  }
+
+  #divTable{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+#addTaskButton {
+    background-color: #04AA6D;
+}
 </style>

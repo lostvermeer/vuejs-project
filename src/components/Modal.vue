@@ -1,12 +1,15 @@
-<template>
-        <div>            
-            <form @submit.prevent="performAction">
-            <TitleInput lable="Title" id="title" v-model="task.title" placeholder="Title here..." required />
-            <DecscriptionInput lable="Description" id="description" v-model="task.description" placeholder="Title here..." required />
-            <DropdownMenu lable="Status" id="status" v-model="task.status" :options="statusOptions" />
-            <button type="submit" @submit="$emit('closeModal')">Submit</button>
-            </form>
-        </div> 
+<template>   
+    <div class="modal-inner">              
+        <form @submit.prevent="performAction">
+            <div>
+            <div class="div"><TitleInput lable="Title" id="title" v-model="task.title" placeholder="Title here..." required /></div>    
+            <div class="div"><DecscriptionInput lable="Description" id="description" v-model="task.description" placeholder="Title here..." required /></div>    
+            <div class="div"><DropdownMenu lable="Status" id="status" v-model="task.status" :options="statusOptions" /></div>    
+                
+            </div>
+        <button id="submitButton" type="submit" @submit="$emit('closeModal')">Submit</button>
+        </form> 
+    </div>        
 </template>
 
 <script setup>
@@ -77,5 +80,19 @@ onMounted(() => {
 
 
 <style scoped>
+#submitButton {
+    background-color: #04AA6D;
+    margin-left: 90px;
+}
 
+.modal-inner {
+ 
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    background-color: #fff;
+    
+
+    .div {
+        justify-items: left;
+    }
+}
 </style>

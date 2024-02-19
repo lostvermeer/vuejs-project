@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="dropdown">
         <label :for="id">
             {{ lable }}
         </label>
@@ -36,6 +36,8 @@ function updateValue(event) {
 }
 </script>
 
-<style>
-    
+<style lang="scss">
+    #dropdown {
+        padding-right: 120px;
+    }
 </style>
