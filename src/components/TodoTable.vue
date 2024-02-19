@@ -3,6 +3,7 @@
         <thead>
             <tr>
                 <th v-for="lable in lables">{{ lable.lable }}</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
